@@ -1,18 +1,29 @@
 package com.tests;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
 
-public class loginPageTest {
-	@FindBy(By.xpath("//p[text()='Username : Admin']\"")
-	private WebElement userNameText();
-	//p[text()='Password : admin123'] // password
+import com.module.BaseClass;
+
+public class loginPageTest extends BaseClass {
+	@BeforeClass
+	public void setup() {
+		getWebDriver();
+	}
 	
-	//input[@name='username']  // to fill username
+	@AfterClass
+	public void teardown() {
+		getWebDriver().close();
+	}
 	
-	//input[@name='password']    //to fill password
+	@Test
+	public void pageURL() {
+		String currentPageURL=getWebDriver().getCurrentUrl();
+		if(currentPageURL.equalsIgnoreCase("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login")) {
+			System.out.println("You are connected to LogIn page...Test pass");
+		}
+	}
 	
-	//button[@type='submit']    // to submit
-	//@FindBy(xpath="//p[text()='Username : Admin']")
+	
 }
